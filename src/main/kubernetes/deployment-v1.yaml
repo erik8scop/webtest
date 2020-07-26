@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webtest-v1
+  labels:
+    app: webtest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webtest
+      version: "1.0"
+  template:
+    metadata:
+      labels:
+        app: webtest
+        version: "1.0"
+    spec:
+      containers:
+        - name: webtest
+          image: "erik8scop/webtest"
+          ports:
+            - name: visitors
+              containerPort: 8080
+          env:
+            - name: VERSION
+              value: "1.0"
