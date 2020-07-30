@@ -5,7 +5,7 @@ metadata:
   labels:
     app: webtest
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 8080
       targetPort: 8080
