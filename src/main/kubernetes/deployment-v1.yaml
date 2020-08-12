@@ -5,7 +5,7 @@ metadata:
   labels:
     app: webtest
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: webtest
@@ -15,6 +15,7 @@ spec:
       labels:
         app: webtest
         version: "1.0"
+        demo: "5.0"
     spec:
       containers:
         - name: webtest
@@ -22,6 +23,24 @@ spec:
           ports:
             - name: visitors
               containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: visitors
+            initialDelaySeconds: 5
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: visitors
+            initialDelaySeconds: 5
+            periodSeconds: 3
           env:
             - name: VERSION
               value: "1.0"
+            - name: LIVENESS_WAIT
+              value: "0"
+            - name: READINESS_WAIT
+              value: "0"
+            - name: READINESS_CHECK
+              value: "true"
