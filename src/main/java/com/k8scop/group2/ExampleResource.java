@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/version")
 public class ExampleResource {
 
-    @ConfigProperty(name = "version", defaultValue = "1.0")
+    @ConfigProperty(name = "version", defaultValue = "2.0")
     private String version;
 
     @GET

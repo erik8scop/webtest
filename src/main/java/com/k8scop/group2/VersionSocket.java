@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 @ApplicationScoped
 public class VersionSocket {
 
-    @ConfigProperty(name = "version", defaultValue = "1.0")
+    @ConfigProperty(name = "version", defaultValue = "2.0")
     private String version;
 
     Map<String, Session> sessions = new ConcurrentHashMap<>();
